@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        text.setText("In Resumed State");
+    }
+
     // this method is called at button click because we assigned the name to the
     // "OnClick" property of the button
     public void onClick(View view) {

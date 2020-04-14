@@ -22,17 +22,44 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 
+    /**
+     * Doc dependancy from,
+     * https://developer.android.com/training/testing/set-up-project#gradle-dependencies
+     *
+     * ActivityScenario,
+     * https://developer.android.com/reference/androidx/test/core/app/ActivityScenario#summary
+     */
     //In UnitTestPackage
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.2.0'
 
     //In AndroidUnitTestPackage
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
     androidTestImplementation 'org.mockito:mockito-android:3.2.4'
+
+    //For Fragments
+    // Java language implementation
+    implementation "androidx.fragment:fragment:1.2.4"
+    // Testing Fragments in Isolation
+    implementation "androidx.fragment:fragment-testing:1.2.4"
 }
